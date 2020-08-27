@@ -1,12 +1,21 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import store from "./store";
+import axios from "axios";
 
-Vue.config.productionTip = false
+// 请求基准路径的配置
+axios.defaults.baseUrl = "http://127.0.0.1:8888/api/";
+// 将axios挂载到vue原型对象上，其他组件使用 this.$http 获取
+Vue.prototype.$http = axios;
+
+// 将全局echarts对象挂载到vue的原型对象上, 其他组件使用 this.$echarts 获取
+Vue.prototype.$echarts = window.echarts;
+
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
   render: h => h(App)
-}).$mount('#app')
+}).$mount("#app");
